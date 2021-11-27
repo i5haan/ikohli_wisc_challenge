@@ -1,13 +1,13 @@
 var readline = require('readline');
 
-function askAndCheckExpteced(expected) {
+function askAndCheckExpected(expected) {
     return new Promise((resolve, reject) => {
         var rl = readline.createInterface({
             input: process.stdin,
             output: process.stdout
         });
 
-        rl.question(`Type ${expected} to move forward: `, function(answer) {
+        rl.question(`Type "${expected}" to continue, any other key to stop: `, function(answer) {
             rl.close();
             if(answer == expected) {
                 resolve(true);
@@ -35,6 +35,6 @@ function askAndReturn(question) {
 
 
 module.exports = {
-    askAndCheckExpteced: askAndCheckExpteced,
+    askAndCheckExpected: askAndCheckExpected,
     askAndReturn: askAndReturn
 }

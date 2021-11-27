@@ -2,27 +2,39 @@ const zendeskService = require('./service/zendeskservice');
 const helpers = require("./helpers");
 const console = require('console');
 
-const GET_ALL_TICKETS_FIELDS = ["id", "subject", "status", "priority", "type", "due_at", "assignee_id", "requester_id", "tags"];
+const GET_ALL_TICKETS_FIELDS = ["id", "subject", "status", "priority", "type", "due_at", "assignee_id", "requester_id"];
 
 async function printAllTickets() {
     let nextPageNumber = "1";
     let cont = true;
 
-    while(nextPageNumber && cont) {
-        let response = await zendeskService.getAllTickets(nextPageNumber);
+    try {
+        while(nextPageNumber && cont) {
+            let response = await zendeskService.getAllTickets(nextPageNumber);
 
-        console.log(zendeskService.getFormattedTableForManyTickets(response.response.payload.tickets, GET_ALL_TICKETS_FIELDS).toString());
+            console.log(zendeskService.getFormattedTableForManyTickets(response.response.payload.tickets, GET_ALL_TICKETS_FIELDS).toString());
 
-        nextPageNumber = response.nextPageNumber;
-        if(nextPageNumber) {
-            cont = await helpers.askAndCheckExpteced("it");
+            nextPageNumber = response.nextPageNumber;
+            if(nextPageNumber) {
+                cont = await helpers.askAndCheckExpected("it");
+            }
         }
+    } catch(e) {
+        console.log(e)
+        console.log(`\nAn error occured: ${e.error}, description: ${e.description} (Possibly check your configs as well)\n`);
     }
 }
 
 async function printTicket(id) {
-    let response = await zendeskService.getTicket(id);
-    let ticket = response.response.payload.ticket;
+    let response;
+    let ticket;
+    try {
+        response = await zendeskService.getTicket(id);
+        ticket = response.response.payload.ticket;
+    } catch(e) {
+        console.log(`\nAn error occured: ${e.error}, description: ${e.description} (Possibly check your configs as well)\n`);
+        return;
+    }
 
     // console.log(ticket)
     console.log("------------------------------------------------------------------------------------------------------------");

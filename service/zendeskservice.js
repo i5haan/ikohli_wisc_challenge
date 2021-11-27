@@ -11,6 +11,10 @@ const PAGE_PARAM_NAME = "page";
 async function getAllTickets(pageNumber) {
     let ticketResponse = await zendeskClient.getAllTickets(pageNumber);
 
+    if(ticketResponse.status != 200) {
+        throw ticketResponse.payload;
+    }
+
     let nextPageUrl = ticketResponse.payload.next_page;
 
     if(!nextPageUrl) {
@@ -41,12 +45,15 @@ async function getAllTickets(pageNumber) {
 // Or else it is the next page number plus the response;
 async function getTicket(id) {
     let ticketResponse = await zendeskClient.getTicketById(id);
+    if(ticketResponse.status != 200) {
+        throw ticketResponse.payload;
+    }
 
     return {response: ticketResponse};
 };  
 
 function getFormattedTableForManyTickets(tickets, fields) {
-    var table = new Table({ head: fields, colWidths: [5, 60, 10, 10, 10, 14, 14, 14, 60] });
+    var table = new Table({ head: fields, colWidths: [5, 60, 10, 10, 10, 14, 14, 14] });
 
     tickets.forEach((ticket) => {
         let tempArray = [];
