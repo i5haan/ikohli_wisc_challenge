@@ -1,0 +1,23 @@
+{
+  "name": "zendesk-project-ikohli-wisc",
+  "version": "1.0.0",
+  "description": "",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/i5haan/zendesk-project-ikohli-wisc.git"
+  },
+  "author": "Ishaan Kohli",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/i5haan/zendesk-project-ikohli-wisc/issues"
+  },
+  "homepage": "https://github.com/i5haan/zendesk-project-ikohli-wisc#readme",
+  "dependencies": {
+    "axios": "^0.24.0",
+    "cli-table": "^0.3.9"
+  }
+}

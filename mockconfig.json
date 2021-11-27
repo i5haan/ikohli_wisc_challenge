@@ -1,0 +1,9 @@
+// Just a placeholder, not going to get used anywhere
+{
+    "domain": "iamazendeskdomain.zendesk.com", // Domain name for your zendesk instance
+    "auth": {
+        "token": "some_token_in_base64",
+        "username": "iam",
+        "password": "highly_secure_password"
+    }
+}
