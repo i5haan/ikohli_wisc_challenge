@@ -40,7 +40,7 @@ async function getAllTickets(pageNumber) {
         payload = response.data;
         status = response.status;
     } catch(e) {
-        if(e.reponse) {
+        if(e.response) {
             payload = e.response.data;
             status = e.response.status;
         } else {
@@ -71,7 +71,7 @@ async function getTicketById(id) {
         payload = response.data;
         status = response.status;
     } catch(e) {
-        if(e.reponse) {
+        if(e.response) {
             payload = e.response.data;
             status = e.response.status;
         } else {

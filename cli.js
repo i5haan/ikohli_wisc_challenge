@@ -3,6 +3,7 @@ const helpers = require("./helpers");
 const console = require('console');
 
 const GET_ALL_TICKETS_FIELDS = ["id", "subject", "status", "priority", "type", "due_at", "assignee_id", "requester_id"];
+const GET_ALL_TICKETS_WIDTHS = [5,     60,        10,       10,         10,     14,       14,            14];
 
 async function printAllTickets() {
     let nextPageNumber = "1";
@@ -12,7 +13,7 @@ async function printAllTickets() {
         while(nextPageNumber && cont) {
             let response = await zendeskService.getAllTickets(nextPageNumber);
 
-            console.log(zendeskService.getFormattedTableForManyTickets(response.response.payload.tickets, GET_ALL_TICKETS_FIELDS).toString());
+            console.log(zendeskService.getFormattedTableForManyTickets(response.response.payload.tickets, GET_ALL_TICKETS_FIELDS, GET_ALL_TICKETS_WIDTHS).toString());
 
             nextPageNumber = response.nextPageNumber;
             if(nextPageNumber) {

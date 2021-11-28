@@ -1,7 +1,9 @@
 const cli = require('./cli');
 const helpers = require('./helpers')
+const homedir = require('os').homedir();
+const CONFIG_PATH = `${homedir}/.zendesk/config.json`;
 
-const configStarter = require('./config');
+const config = require('./config');
 
 
 async function start() {
@@ -17,7 +19,7 @@ async function start() {
 }
 
 async function main() {
-    await configStarter.loadConfig();
+    config.loadConfig(CONFIG_PATH);
     while(1) {
         await start();
     }

@@ -1,0 +1,8 @@
+{
+    "domain": "zendesk_domain", 
+    "auth": {
+        "username": "username",
+        "token": "either_a_token",
+        "password": "or_a_password"
+    }
+}
